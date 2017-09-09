@@ -130,8 +130,9 @@ class XmlConstructTest extends \PHPUnit\Framework\TestCase
 
         $xmlGen = new XmlConstruct('ROOT', ':');
 
-        $output = $xmlGen->fromJsonSerializable(new class($array) implements JsonSerializable{
-            public function __construct(array $array) {
+        $output = $xmlGen->fromJsonSerializable(new class($array) implements JsonSerializable {
+            public function __construct(array $array)
+            {
                 $this->array = $array;
             }
 
@@ -139,7 +140,8 @@ class XmlConstructTest extends \PHPUnit\Framework\TestCase
             {
                 return $this->array;
             }
-        })->getDocument();
+        }
+        )->getDocument();
 
         $compare = '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL.
                     '<ROOT>'.PHP_EOL.
