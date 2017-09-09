@@ -17,8 +17,8 @@ class XmlConstructTest extends \PHPUnit\Framework\TestCase
     {
         $array = ['KEY1' => 'VALUE1', 'KEY2' => 'VALUE2'];
 
-        $output = (new XmlConstruct('ROOT'))->fromArray($array)
-                                            ->getDocument();
+        $xmlGen = new XmlConstruct('ROOT');
+        $output = $xmlGen->fromArray($array)->getDocument();
 
         $compare = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL .
                     '<ROOT>' . PHP_EOL .
@@ -34,8 +34,8 @@ class XmlConstructTest extends \PHPUnit\Framework\TestCase
     {
         $array = [['KEY1' => 'VALUE1', 'KEY2' => 'VALUE2']];
 
-        $output = (new XmlConstruct('ROOT'))->fromArray($array)
-                                            ->getDocument();
+        $xmlGen = new XmlConstruct('ROOT');
+        $output = $xmlGen->fromArray($array)->getDocument();
 
         $compare = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL .
                     '<ROOT>' . PHP_EOL .
@@ -51,8 +51,8 @@ class XmlConstructTest extends \PHPUnit\Framework\TestCase
     {
         $array = [['KEY1|ATTR1|VAL1|ATTR2|VAL2' => 'VALUE1', 'KEY2' => 'VALUE2']];
 
-        $output = (new XmlConstruct('ROOT'))->fromArray($array)
-                                            ->getDocument();
+        $xmlGen = new XmlConstruct('ROOT');
+        $output = $xmlGen->fromArray($array)->getDocument();
 
         $compare = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL .
                     '<ROOT>' . PHP_EOL .
@@ -68,8 +68,8 @@ class XmlConstructTest extends \PHPUnit\Framework\TestCase
     {
         $array = [['KEY1:ATTR1:VAL1:ATTR2:VAL2' => 'VALUE1', 'KEY2' => 'VALUE2']];
 
-        $output = (new XmlConstruct('ROOT', ':'))->fromArray($array)
-                                            ->getDocument();
+        $xmlGen = new XmlConstruct('ROOT', ':');
+        $output = $xmlGen->fromArray($array)->getDocument();
 
         $compare = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL .
                     '<ROOT>' . PHP_EOL .
@@ -86,9 +86,10 @@ class XmlConstructTest extends \PHPUnit\Framework\TestCase
         // array with missing value
         $array = [['KEY1:ATTR1:VAL1:ATTR2' => 'VALUE1', 'KEY2' => 'VALUE2']];
 
+        $xmlGen = new XmlConstruct('ROOT', ':');
+
         $this->expectException('BadFunctionCallException');
-        $output = (new XmlConstruct('ROOT', ':'))->fromArray($array)
-                                            ->getDocument();
+        $output = $xmlGen->fromArray($array)->getDocument();
     }
 
     /** @test */
@@ -97,8 +98,9 @@ class XmlConstructTest extends \PHPUnit\Framework\TestCase
         // array with missing value
         $array = [['KEY1' => 'VALUE1', 'KEY2' => null]];
 
+        $xmlGen = new XmlConstruct('ROOT', ':');
+
         $this->expectException('TypeError');
-        $output = (new XmlConstruct('ROOT', ':'))->fromArray($array)
-                                            ->getDocument();
+        $output = $xmlGen->fromArray($array)->getDocument();
     }
 }
