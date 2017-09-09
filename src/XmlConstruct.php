@@ -27,6 +27,7 @@ class XmlConstruct extends XMLWriter
         $this->startDocument('1.0', 'UTF-8');
 
         $this->startElement($rootElementName);
+        $this->separator = $separator;
     }
 
     /**
