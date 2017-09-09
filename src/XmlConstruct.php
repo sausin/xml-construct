@@ -146,11 +146,12 @@ class XmlConstruct extends XMLWriter
      * Check if provided string is Json string.
      *
      * @param  string  $string
-     * @return boolean
+     * @return bool
      */
     protected function isJson(string $string): bool
     {
         json_decode($string);
-        return (json_last_error() == JSON_ERROR_NONE);
+
+        return json_last_error() == JSON_ERROR_NONE;
     }
 }
