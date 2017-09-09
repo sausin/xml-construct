@@ -13,7 +13,7 @@
 >
     <testsuites>
         <testsuite name="XML Construct for PHP">
-            <directory suffix=".php">./tests/</directory>
+            <directory suffix="Test.php">./tests/</directory>
         </testsuite>
     </testsuites>
 </phpunit>

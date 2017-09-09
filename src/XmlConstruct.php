@@ -3,6 +3,7 @@
 namespace Sausin\XmlConstruct;
 
 use XMLWriter;
+use JsonSerializable;
 use BadFunctionCallException;
 
 /**
@@ -37,7 +38,7 @@ class XmlConstruct extends XMLWriter
      * @param  array  $prmArray Contains values
      * @return XmlConstruct
      */
-    public function fromArray(array $prmArray)
+    public function fromArray(array $prmArray): XmlConstruct
     {
         foreach ($prmArray as $key => $val) {
             if (is_array($val)) {
@@ -59,11 +60,37 @@ class XmlConstruct extends XMLWriter
     }
 
     /**
+     * Construct elements and texts from a json string.
+     *
+     * @param  string $jsonString
+     * @return XmlConstruct
+     */
+    public function fromJson(string $jsonString): XmlConstruct
+    {
+        if (! $this->isJson($jsonString)) {
+            throw new UnexpectedValueException('Invalid string provided');
+        }
+
+        return $this->fromArray(json_decode($jsonString, true));
+    }
+
+    /**
+     * Construct elements and texts from a json string.
+     *
+     * @param  JsonSerializable $jsonObject
+     * @return XmlConstruct
+     */
+    public function fromJsonSerializable(JsonSerializable $jsonObject): XmlConstruct
+    {
+        return $this->fromArray(json_decode(json_encode($jsonObject), true));
+    }
+
+    /**
      * Return the content of a current xml document.
      *
      * @return string XML document
      */
-    public function getDocument()
+    public function getDocument(): string
     {
         $this->endElement();
         $this->endDocument();
@@ -75,7 +102,7 @@ class XmlConstruct extends XMLWriter
      * Write a key.
      *
      * @param  string $key
-     * @return void
+     * @return void|BadFunctionCallException
      */
     protected function writeKey(string $key)
     {
@@ -104,7 +131,7 @@ class XmlConstruct extends XMLWriter
      *
      * @param  string $name An element's name
      * @param  string $text An element's text
-     * @return void
+     * @return void|BadFunctionCallException
      */
     protected function setElement(string $name, string $text)
     {
@@ -113,5 +140,17 @@ class XmlConstruct extends XMLWriter
         $this->text($text);
 
         $this->endElement();
+    }
+
+    /**
+     * Check if provided string is Json string.
+     *
+     * @param  string  $string
+     * @return boolean
+     */
+    protected function isJson(string $string): bool
+    {
+        json_decode($string);
+        return (json_last_error() == JSON_ERROR_NONE);
     }
 }
