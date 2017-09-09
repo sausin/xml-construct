@@ -5,7 +5,7 @@ namespace Sausin\XmlConstruct\Tests;
 use Sausin\XmlConstruct\XmlConstruct;
 
 // backward compatibility for phpunit
-if (!class_exists('\PHPUnit\Framework\TestCase') &&
+if (! class_exists('\PHPUnit\Framework\TestCase') &&
     class_exists('\PHPUnit_Framework_TestCase')) {
     class_alias('\PHPUnit_Framework_TestCase', '\PHPUnit\Framework\TestCase');
 }
@@ -20,11 +20,11 @@ class XmlConstructTest extends \PHPUnit\Framework\TestCase
         $xmlGen = new XmlConstruct('ROOT');
         $output = $xmlGen->fromArray($array)->getDocument();
 
-        $compare = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL .
-                    '<ROOT>' . PHP_EOL .
-                    '  <KEY1>VALUE1</KEY1>' . PHP_EOL .
-                    '  <KEY2>VALUE2</KEY2>' . PHP_EOL .
-                    '</ROOT>' . PHP_EOL;
+        $compare = '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL.
+                    '<ROOT>'.PHP_EOL.
+                    '  <KEY1>VALUE1</KEY1>'.PHP_EOL.
+                    '  <KEY2>VALUE2</KEY2>'.PHP_EOL.
+                    '</ROOT>'.PHP_EOL;
 
         $this->assertEquals($compare, $output);
     }
@@ -37,11 +37,11 @@ class XmlConstructTest extends \PHPUnit\Framework\TestCase
         $xmlGen = new XmlConstruct('ROOT');
         $output = $xmlGen->fromArray($array)->getDocument();
 
-        $compare = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL .
-                    '<ROOT>' . PHP_EOL .
-                    '  <KEY1>VALUE1</KEY1>' . PHP_EOL .
-                    '  <KEY2>VALUE2</KEY2>' . PHP_EOL .
-                    '</ROOT>' . PHP_EOL;
+        $compare = '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL.
+                    '<ROOT>'.PHP_EOL.
+                    '  <KEY1>VALUE1</KEY1>'.PHP_EOL.
+                    '  <KEY2>VALUE2</KEY2>'.PHP_EOL.
+                    '</ROOT>'.PHP_EOL;
 
         $this->assertEquals($compare, $output);
     }
@@ -54,11 +54,11 @@ class XmlConstructTest extends \PHPUnit\Framework\TestCase
         $xmlGen = new XmlConstruct('ROOT');
         $output = $xmlGen->fromArray($array)->getDocument();
 
-        $compare = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL .
-                    '<ROOT>' . PHP_EOL .
-                    '  <KEY1 ATTR1="VAL1" ATTR2="VAL2">VALUE1</KEY1>' . PHP_EOL .
-                    '  <KEY2>VALUE2</KEY2>' . PHP_EOL .
-                    '</ROOT>' . PHP_EOL;
+        $compare = '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL.
+                    '<ROOT>'.PHP_EOL.
+                    '  <KEY1 ATTR1="VAL1" ATTR2="VAL2">VALUE1</KEY1>'.PHP_EOL.
+                    '  <KEY2>VALUE2</KEY2>'.PHP_EOL.
+                    '</ROOT>'.PHP_EOL;
 
         $this->assertEquals($compare, $output);
     }
@@ -71,11 +71,11 @@ class XmlConstructTest extends \PHPUnit\Framework\TestCase
         $xmlGen = new XmlConstruct('ROOT', ':');
         $output = $xmlGen->fromArray($array)->getDocument();
 
-        $compare = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL .
-                    '<ROOT>' . PHP_EOL .
-                    '  <KEY1 ATTR1="VAL1" ATTR2="VAL2">VALUE1</KEY1>' . PHP_EOL .
-                    '  <KEY2>VALUE2</KEY2>' . PHP_EOL .
-                    '</ROOT>' . PHP_EOL;
+        $compare = '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL.
+                    '<ROOT>'.PHP_EOL.
+                    '  <KEY1 ATTR1="VAL1" ATTR2="VAL2">VALUE1</KEY1>'.PHP_EOL.
+                    '  <KEY2>VALUE2</KEY2>'.PHP_EOL.
+                    '</ROOT>'.PHP_EOL;
 
         $this->assertEquals($compare, $output);
     }

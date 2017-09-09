@@ -6,7 +6,7 @@ use XMLWriter;
 use BadFunctionCallException;
 
 /**
- * Credit goes to the commenters on php.net for the basic structure of this
+ * Credit goes to the commenters on php.net for the basic structure of this.
  * @see http://php.net/manual/en/ref.xmlwriter.php
  */
 class XmlConstruct extends XMLWriter
@@ -15,7 +15,7 @@ class XmlConstruct extends XMLWriter
 
     /**
      * Constructor.
-     * 
+     *
      * @param  string      $rootElementName
      * @param  string|null $separator
      */
@@ -68,7 +68,7 @@ class XmlConstruct extends XMLWriter
     {
         $this->endElement();
         $this->endDocument();
-        
+
         return $this->outputMemory();
     }
 
