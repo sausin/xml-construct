@@ -16,10 +16,10 @@ class XmlConstruct extends XMLWriter
     /**
      * Constructor.
      *
-     * @param  string      $rootElementName
-     * @param  string|null $separator
+     * @param  string $rootElementName
+     * @param  string $separator
      */
-    public function __construct(string $rootElementName, string $separator = null)
+    public function __construct(string $rootElementName, string $separator = '|')
     {
         $this->openMemory();
         $this->setIndent(true);
@@ -27,8 +27,6 @@ class XmlConstruct extends XMLWriter
         $this->startDocument('1.0', 'UTF-8');
 
         $this->startElement($rootElementName);
-        // set here to keep compatibility with 5.6
-        $this->separator = $separator ?: '|';
     }
 
     /**
