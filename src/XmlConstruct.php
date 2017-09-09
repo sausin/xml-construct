@@ -38,7 +38,7 @@ class XmlConstruct extends XMLWriter
      * @param  array  $prmArray Contains values
      * @return XmlConstruct
      */
-    public function fromArray(array $prmArray): XmlConstruct
+    public function fromArray(array $prmArray)
     {
         foreach ($prmArray as $key => $val) {
             if (is_array($val)) {
@@ -64,7 +64,7 @@ class XmlConstruct extends XMLWriter
      *
      * @return string XML document
      */
-    public function getDocument(): string
+    public function getDocument()
     {
         $this->endElement();
         $this->endDocument();
@@ -78,7 +78,7 @@ class XmlConstruct extends XMLWriter
      * @param  string $key
      * @return void
      */
-    protected function writeKey(string $key): void
+    protected function writeKey(string $key)
     {
         if (mb_strpos($key, $this->separator)) {
             $pieces = explode($this->separator, $key);
@@ -107,7 +107,7 @@ class XmlConstruct extends XMLWriter
      * @param  string $text An element's text
      * @return void
      */
-    protected function setElement(string $name, string $text): void
+    protected function setElement(string $name, string $text)
     {
         $this->writeKey($name);
 
