@@ -1,0 +1,5 @@
+vendor/
+node_modules/
+xml-construct.sublime-project
+xml-construct.sublime-workspace
+composer.lock
